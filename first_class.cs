@@ -18,9 +18,9 @@ class VehicleClassification
         if (vehicleType == "car" || vehicleType == "truck" || vehicleType == "motorcycle"){
             switch (vehicleType){
                 case "car":
-                    //Fuel type is Electric or Petrol
+                //Fuel type is Electric or Petrol
                     if (fuelType == "petrol" || fuelType == "electric"){
-                        Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType); /*Output Formatting*/
+                        Console.WriteLine("This " + vehicleType + " runs on " + fuelType); /* Concatenation */
                     }
                     else{
                         Console.WriteLine("Fuel type not valid.");
@@ -28,9 +28,9 @@ class VehicleClassification
                 break;
                 
                 case "truck":
-                    //Fuel type is Petrol or Diesel
+                //Fuel type is Petrol or Diesel
                     if (fuelType == "petrol" || fuelType == "diesel"){
-                        Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType);
+                        Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType); /* Output Formatting */
                     }
                     else{
                         Console.WriteLine("Fuel type not valid.");
@@ -38,7 +38,7 @@ class VehicleClassification
                 break;
                 
                 case "motorcycle":
-                    //Fuel tyoe is Petrol
+                //Fuel tyoe is Petrol
                     if (fuelType == "petrol"){
                         Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType);
                     }
