@@ -4,59 +4,52 @@ class VehicleClassification
 {
     static void Main()
     {
-        Console.WriteLine("Enter the type of vehicle (Car, Truck, Motorcycle):");
+        Console.WriteLine("Your vehicle type please?");
         string vehicleType = Console.ReadLine();
-
-        Console.WriteLine("Enter the fuel type (Petrol, Diesel, Electric):");
+        
+        Console.WriteLine("Your fuel type please?");
         string fuelType = Console.ReadLine();
-
-        // Casting data
-        vehicleType = vehicleType.ToLower(); // Convert to lowercase for case-insensitive comparison
+        
+        // Data Casting - Coverts to lower case
+        vehicleType = vehicleType.ToLower();
         fuelType = fuelType.ToLower();
-
-        // Check if the entered vehicle type is valid
-        if (vehicleType == "car" || vehicleType == "truck" || vehicleType == "motorcycle")
-        {
-            // Logical operators to handle invalid fuel types
-            switch (vehicleType)
-            {
+        
+        //Conditional Statements
+        if (vehicleType == "car" || vehicleType == "truck" || vehicleType == "motorcycle"){
+            switch (vehicleType){
                 case "car":
-                    if (fuelType == "petrol" || fuelType == "electric")
-                    {
-                        Console.WriteLine("Vehicle classified as a car running on {0} fuel.", fuelType);
+                    //Fuel type is Electric or Petrol
+                    if (fuelType == "petrol" || fuelType == "electric"){
+                        Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType); /*Output Formatting*/
                     }
-                    else
-                    {
-                        Console.WriteLine("Invalid fuel type for a car.");
+                    else{
+                        Console.WriteLine("Fuel type not valid.");
                     }
-                    break;
-
+                break;
+                
                 case "truck":
-                    if (fuelType == "petrol" || fuelType == "diesel")
-                    {
-                        Console.WriteLine("Vehicle classified as a truck running on {0} fuel.", fuelType);
+                    //Fuel type is Petrol or Diesel
+                    if (fuelType == "petrol" || fuelType == "diesel"){
+                        Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType);
                     }
-                    else
-                    {
-                        Console.WriteLine("Invalid fuel type for a truck.");
+                    else{
+                        Console.WriteLine("Fuel type not valid.");
                     }
-                    break;
-
+                break;
+                
                 case "motorcycle":
-                    if (fuelType == "petrol")
-                    {
-                        Console.WriteLine("Vehicle classified as a motorcycle running on petrol.");
+                    //Fuel tyoe is Petrol
+                    if (fuelType == "petrol"){
+                        Console.WriteLine("This {0} runs on {1}", vehicleType, fuelType);
                     }
-                    else
-                    {
-                        Console.WriteLine("Invalid fuel type for a motorcycle.");
+                    else{
+                        Console.WriteLine("Fuel type not valid.");
                     }
-                    break;
+                break;
             }
         }
-        else
-        {
-            Console.WriteLine("Invalid vehicle type.");
+        else{
+            Console.WriteLine("Invalid Vehicle Type");
         }
     }
 }
