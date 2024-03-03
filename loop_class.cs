@@ -1,3 +1,23 @@
+/*Create a C# program that incorporates various programming concepts. Follow the instructions below:
+
+Your code should:
+
+Request the user's name as input.
+Greet the user using their name.
+Prompt the user to enter the count of numbers they want to analyze.
+Ensure the entered count is a positive integer; display an error message and request re-entry if necessary.
+Allow the user to input the specified count of numeric values.
+Implement input validation using a while loop, and display an error message if an invalid numeric value is entered.
+Find and display the maximum and minimum values from the entered numbers.
+Classify the array of numbers into one of three categories:
+"allPositive" if all numbers are positive.
+"allNegative" if all numbers are negative.
+"mix" if there is a mix of positive and negative numbers.
+Utilize different looping mechanisms (for loop, while loop, do-while loop) for input and classification validation.
+Use break, continue, and return statements appropriately in the code.
+Ensure that the program outputs accurate and meaningful results.*/
+
+
 using System;
 
 class NumberAnalysis
@@ -14,16 +34,16 @@ class NumberAnalysis
 
             for (int i = 0; i < count; i++)
             {
+                double enteredNumber; // Declare the variable outside the while loop
+
                 Console.WriteLine($"Enter number {i + 1}:");
-                if (double.TryParse(Console.ReadLine(), out double enteredNumber))
-                {
-                    numbers[i] = enteredNumber;
-                }
-                else
+
+                while (!double.TryParse(Console.ReadLine(), out enteredNumber))
                 {
                     Console.WriteLine("Invalid number. Please enter a valid numeric value.");
-                    i--; // Decrement i to re-enter the current index
                 }
+
+                numbers[i] = enteredNumber;
             }
 
             double max = numbers[0];
@@ -39,20 +59,31 @@ class NumberAnalysis
             Console.WriteLine($"Maximum value: {max}");
             Console.WriteLine($"Minimum value: {min}");
 
-            switch (ArrayClassification(numbers))
+            string classification;
+            do
             {
-                case "allPositive":
-                    Console.WriteLine("Array contains all positive numbers.");
+                classification = ArrayClassification(numbers);
+
+                switch (classification)
+                {
+                    case "allPositive":
+                        Console.WriteLine("Array contains all positive numbers.");
+                        break;
+
+                    case "allNegative":
+                        Console.WriteLine("Array contains all negative numbers.");
+                        break;
+
+                    case "mix":
+                        Console.WriteLine("Array contains a mix of positive and negative numbers.");
+                        break;
+                }
+
+                if (classification == "allPositive" || classification == "allNegative" || classification == "mix")
                     break;
 
-                case "allNegative":
-                    Console.WriteLine("Array contains all negative numbers.");
-                    break;
-
-                case "mix":
-                    Console.WriteLine("Array contains a mix of positive and negative numbers.");
-                    break;
-            }
+                Console.WriteLine("Invalid classification. Re-evaluating...");
+            } while (true);
         }
         else
         {
@@ -65,10 +96,10 @@ class NumberAnalysis
         bool hasPositive = false;
         bool hasNegative = false;
 
-        foreach (double num in arr)
+        for (int i = 0; i < arr.Length; i++)
         {
-            if (num > 0) hasPositive = true;
-            else if (num < 0) hasNegative = true;
+            if (arr[i] > 0) hasPositive = true;
+            else if (arr[i] < 0) hasNegative = true;
         }
 
         return hasPositive && !hasNegative ? "allPositive" :
