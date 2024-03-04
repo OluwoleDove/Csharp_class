@@ -45,22 +45,19 @@ class NumberAnalysis
             //DO WHILE LOOP
             classifyNum = hasPositive && !hasNegative ? "allPositive": !hasPositive && hasNegative ? "allNegative" : "mix";
             
-            do
-            {
-                switch (classifyNum) {
-                    case "allPositive":
-                        Console.WriteLine("Entered Numbers are all positive.");
-                        break;
+            switch (classifyNum) {
+                case "allPositive":
+                    Console.WriteLine("Entered Numbers are all positive.");
+                    break;
                     
-                    case "allNegative":
-                        Console.WriteLine("Entered Numbers are all negative.");
-                        break;
+                case "allNegative":
+                    Console.WriteLine("Entered Numbers are all negative.");
+                    break;
                         
-                    case "mix":
-                        Console.WriteLine("Entered Numbers are a mix of positive and negative values.");
-                        break;
-                }
-            } while(true);
+                case "mix":
+                    Console.WriteLine("Entered Numbers are a mix of positive and negative values.");
+                    break;
+            }
         }
     }
 }
