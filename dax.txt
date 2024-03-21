@@ -1,0 +1,17 @@
+let
+    Source = Excel.Workbook(File.Contents("C:\Users\ladma\Downloads\dirty_data\Ditry Data Sample.xlsx"), null, true),
+    #"Dirty 1_Sheet" = Source{[Item="Dirty 1",Kind="Sheet"]}[Data],
+    #"Promoted Headers" = Table.PromoteHeaders(#"Dirty 1_Sheet", [PromoteAllScalars=true]),
+    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Segment>>", type text}, {"Consumer", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Consumer Total", type number}, {"Corporate", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Corporate Total", type number}, {"Home Office", type any}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Home Office Total", type number}}),
+    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Consumer", "Column3", "Column4", "Column5", "Corporate", "Column8", "Column9", "Column10", "Home Office", "Column13", "Column14", "Column15"}),
+    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns",null,0,Replacer.ReplaceValue,{"Consumer Total"}),
+    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,0,Replacer.ReplaceValue,{"Corporate Total"}),
+    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",null,0,Replacer.ReplaceValue,{"Home Office Total"}),
+    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value2",{{"Consumer Total", Int64.Type}}),
+    #"Rounded Up" = Table.TransformColumns(#"Changed Type1",{{"Corporate Total", Number.RoundUp, Int64.Type}}),
+    #"Rounded Off" = Table.TransformColumns(#"Rounded Up",{{"Home Office Total", each Number.Round(_, 2), type number}}),
+    #"Rounded Up1" = Table.TransformColumns(#"Rounded Off",{{"Home Office Total", Number.RoundUp, Int64.Type}}),
+    #"Duplicated Column" = Table.DuplicateColumn(#"Rounded Up1", "Home Office Total", "Home Office Total - Copy"),
+    #"Removed Columns1" = Table.RemoveColumns(#"Duplicated Column",{"Home Office Total - Copy"})
+in
+    #"Removed Columns1"
