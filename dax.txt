@@ -15,3 +15,16 @@ let
     #"Removed Columns1" = Table.RemoveColumns(#"Duplicated Column",{"Home Office Total - Copy"})
 in
     #"Removed Columns1"
+
+    QUESTIONS
+
+    What's the average difference between actual and planned shipping days, considering factors like shipping mode and department?
+    For order profit and benefit per order, which product categories or customer segments perform best?
+    How does the on-time delivery rate differ across markets and regions? Is there a link between on-time delivery and order value?
+    What's the average sales per customer, and how does it vary by customer segment or location?
+    What customer or product factors are most likely to result in late deliveries (based on the Late_delivery_risk variable)?
+    What's the average discount rate and value applied per order item, and how does it affect overall sales and profit margins?
+    How does product availability impact sales or order quantities for specific categories or departments?
+    Are there any geographic trends (countries, regions, cities) in terms of order volume, sales, or customer segments?
+    Can we identify any correlations between customer demographics and customer segments?
+    Can we explore patterns in order status that might indicate potential fraudulent activity?
